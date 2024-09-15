@@ -1,4 +1,6 @@
+import 'package:adstacks/utils/responsive.dart';
 import 'package:adstacks/widgets/dashboard_widget.dart';
+import 'package:adstacks/widgets/profile_side_widget%20.dart';
 import 'package:adstacks/widgets/side_menu_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -12,25 +14,35 @@ class MainScreens extends StatefulWidget {
 class _MainScreensState extends State<MainScreens> {
   @override
   Widget build(BuildContext context) {
+    final isDesktop = Responsive.isDesktop(context);
     return Scaffold(
+      drawer: !isDesktop
+          ? SizedBox(
+              width: 250,
+              child: SideMenu(),
+            )
+          : null,
+      endDrawer: Responsive.isMobile(context)
+          ? SizedBox(
+              width: MediaQuery.of(context).size.width * 0.7,
+              child: SideProfileWidget(),
+            )
+          : null,
       body: SafeArea(
           child: Row(
         children: [
-          const Expanded(
+          if (isDesktop)
+            Expanded(
               flex: 2,
               child: SizedBox(
                 child: SideMenu(),
-              )),
-          const Expanded(
-            flex: 7,
-            child:DashboardWidget()
-          ),
-          Expanded(
-            flex: 3,
-            child: Container(
-              color: Colors.green,
+              ),
             ),
-          )
+          Expanded(
+            flex: 7,
+            child: DashboardWidget(),
+          ),
+          if (isDesktop) Expanded(flex: 3, child: SideProfileWidget())
         ],
       )),
     );

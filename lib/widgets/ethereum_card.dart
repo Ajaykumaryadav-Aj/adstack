@@ -16,7 +16,10 @@ class _EthereumCardState extends State<EthereumCard> {
       width: double.infinity,
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color.fromARGB(255, 55, 12, 63), Colors.pinkAccent],
+          colors: [
+            Color.fromARGB(255, 147, 5, 172),
+            Color.fromARGB(255, 18, 79, 159)
+          ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),

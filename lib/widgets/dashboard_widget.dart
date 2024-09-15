@@ -1,7 +1,9 @@
 import 'package:adstacks/main.dart';
-import 'package:adstacks/widgets/chart.dart';
+import 'package:adstacks/utils/responsive.dart';
+import 'package:adstacks/widgets/line_chart_widget.dart';
 import 'package:adstacks/widgets/ethereum_card.dart';
 import 'package:adstacks/widgets/header_widget.dart';
+import 'package:adstacks/widgets/profile_side_widget%20.dart';
 import 'package:adstacks/widgets/smallcard_widget.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -16,22 +18,30 @@ class DashboardWidget extends StatefulWidget {
 class _DashboardWidgetState extends State<DashboardWidget> {
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(height: 18),
-          Padding(
+          const SizedBox(height: 18),
+          const Padding(
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
             child: HeaderWidget(),
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
             child: EthereumCard(),
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
             child: SmallcardWidget(),
           ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+            child: LineChartWidget(),
+          ),
+          const SizedBox(
+            height: 18,
+          ),
+          if (Responsive.isTablet(context))const SideProfileWidget()
         ],
       ),
     );

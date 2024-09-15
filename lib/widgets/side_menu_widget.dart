@@ -13,106 +13,107 @@ class _SideMenuState extends State<SideMenu> {
   @override
   Widget build(BuildContext context) {
     final data = SideMenuData();
-    return Container(
-      // padding: EdgeInsets.symmetric(vertical: 50, horizontal: 10),
-      child: Column(
-        children: [
-          const SizedBox(
-            height: 80,
-            width: 80,
-            child: CircleAvatar(
-                // backgroundImage: AssetImage(
-                //   'assets/image/Adstacks-w_o-bg.png',
-                // ),
-                ),
-          ),
-          const Divider(color: Colors.grey),
-          CircleAvatar(
-            radius: 30,
-            // backgroundImage: AssetImage(
-            //   'assets/image/profile12.jpeg',
-            // ),
-          ),
-          const Text('Pooja Mishra'),
-          Container(
-            alignment: Alignment.center,
-            child: const Text('Admin'),
-            height: 30,
-            width: 100,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: Colors.greenAccent)),
-          ),
-          const Divider(
-            color: Colors.grey,
-          ),
-          ListView.builder(
-            
-            shrinkWrap: true,
-            itemCount: data.menu.length,
-            itemBuilder: (context, index) => buildMenuEntry(data, index),
-          ),
-          const Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 12,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'WORKSPACE',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                ),
-                Icon(Icons.add)
-              ],
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 13),
-            child: ExpansionTile(
-              title: Text(
-                "Adstacks",
-                style: TextStyle(fontSize: 9),
+    return SingleChildScrollView(
+      child: Container(
+        color: Colors.white,
+        child: Column(
+          children: [
+            const SizedBox(height: 50),
+            const SizedBox(
+                height: 100,
+                child: Column(
+                  children: [
+                    Text(
+                      'AS',
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      'Adstack',
+                      style:
+                          TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+                    )
+                  ],
+                )),
+            const Divider(color: Colors.grey),
+            const CircleAvatar(
+              backgroundColor: Colors.amber,
+              radius: 30,
+              child: CircleAvatar(
+                radius: 28,
               ),
-              children: <Widget>[
-                ListTile(
-                  title: Text("Option 1"),
-                ),
-                ListTile(
-                  title: Text("Option 2"),
-                ),
-              ],
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 13),
-            child: const ExpansionTile(
-              title: Text(
-                "Finance",
-                style: TextStyle(fontSize: 11),
+            const Text(
+              'Pooja Mishra',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 8),
+            Container(
+              alignment: Alignment.center,
+              height: 30,
+              width: 100,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                      color: const Color.fromARGB(255, 161, 54, 242))),
+              child: const Text('Admin'),
+            ),
+            const Divider(
+              color: Colors.grey,
+            ),
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: data.menu.length,
+              itemBuilder: (context, index) => buildMenuEntry(data, index),
+            ),
+            Container(
+              color: const Color.fromARGB(255, 125, 186, 237),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'WORKSPACE',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    ),
+                    Icon(Icons.add)
+                  ],
+                ),
               ),
-              children: <Widget>[
-                ListTile(
-                  title: Text("Option 1"),
-                ),
-                ListTile(
-                  title: Text("Option 2"),
-                ),
-              ],
             ),
-          ),
-          const SizedBox(height: 30),
-          ListTile(
-            leading: const Icon(Icons.settings),
-            title: const Text("Setting"),
-            onTap: () {},
-          ),
-          ListTile(
-            leading: const Icon(Icons.logout),
-            title: const Text("Logout"),
-            onTap: () {},
-          ),
-        ],
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 13),
+              child: ExpansionTile(
+                title: Text(
+                  "Adstacks",
+                  style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 13),
+              child: ExpansionTile(
+                title: Text(
+                  "Finance",
+                  style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            const SizedBox(height: 30),
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: const Text("Setting"),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: const Icon(Icons.logout),
+              title: const Text("Logout"),
+              onTap: () {},
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -134,11 +135,13 @@ class _SideMenuState extends State<SideMenu> {
               child: Icon(
                 data.menu[index].icon,
                 color: isSelected ? Colors.black : Colors.black,
+                size: 16,
               ),
             ),
             Text(
               data.menu[index].title,
               style: TextStyle(
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
                 color: isSelected ? Colors.black : Colors.black,
               ),
             )
